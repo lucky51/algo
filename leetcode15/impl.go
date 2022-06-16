@@ -1,28 +1,48 @@
 package leetcode15
 
-// import "sort"
+import "sort"
 
-// // threeSum 三个数之和
-// func threeSum(nums []int) [][]int {
-// 	ans := [][]int{}
-// 	sort.Ints(nums)
-// 	m := map[int]byte{}
-// 	for i := 0; i < len(nums); i++ {
-
-// 	}
-// 	lt, rh := 0, len(nums)-1
-// 	for lt < rh {
-// 		sub := -(nums[rh] + nums[lt])
-// 		if _, ok := m[sub]; ok {
-// 			ans = append(ans, []int{sub, nums[rh], nums[lt]})
-// 		}else if sub >
-// 		for lt+1 < rh && nums[lt+1] == nums[lt] {
-// 			lt++
-// 		}
-// 		for rh-1 > lt && nums[rh-1] == nums[rh] {
-// 			rh--
-// 		}
-
-// 	}
-
-// }
+// threeSum 三个数之和
+func threeSum(nums []int) [][]int {
+	var ans = [][]int{}
+	// 根据题意小于三个元素的直接返回空数组
+	if len(nums) < 3 {
+		return ans
+	}
+	// 先排序
+	sort.Ints(nums)
+	for i := 0; i < len(nums)-2; i++ {
+		// 如果第一个数字就大于0 ，那么后边的两个数字一定也大于它，根本没办法相加起来等于0
+		if nums[i] > 0 {
+			break
+		}
+		// 排除掉重复的数字
+		if i > 0 && nums[i-1] == nums[i] {
+			continue
+		}
+		// 定义双指针,将当前的数字设定为目标0-目标值
+		lt, rh, target := i+1, len(nums)-1, -nums[i]
+		for lt < rh {
+			// 找到一组符合条件的数字
+			if nums[lt]+nums[rh] == target {
+				ans = append(ans, []int{nums[i], nums[lt], nums[rh]})
+				//移动左右指针
+				lt++
+				rh--
+				// 在这里过滤掉左右相同的数字
+				for lt < rh && nums[lt] == nums[lt-1] {
+					lt++
+				}
+				for lt < rh && nums[rh] == nums[rh+1] {
+					rh--
+				}
+			} else if nums[lt]+nums[rh] < target {
+				// 如果小于目标值，说明应该移动左指针，让和值变大，来接近目标值
+				lt++
+			} else {
+				rh--
+			}
+		}
+	}
+	return ans
+}
