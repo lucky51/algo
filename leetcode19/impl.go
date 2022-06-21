@@ -1,7 +1,5 @@
 package leetcode19
 
-import "fmt"
-
 /**
  * Definition for singly-linked list.
  * type ListNode struct {
@@ -16,17 +14,15 @@ type ListNode struct {
 
 var ans int
 
+// removeNthFromEnd 移除链表后边第N个数
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
-	if head.Next == nil {
-		return nil
-	}
-
 	if retrieveTree(head, n) == 0 {
 		return head.Next
 	}
-
 	return head
 }
+
+// retrieveTree 后序遍历
 func retrieveTree(head *ListNode, n int) int {
 	if head == nil {
 		return n
@@ -37,6 +33,5 @@ func retrieveTree(head *ListNode, n int) int {
 			head.Next = head.Next.Next
 		}
 	}
-	fmt.Println("node:", head.Val, n)
 	return n - 1
 }
