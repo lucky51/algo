@@ -4,7 +4,7 @@ import (
 	"math"
 )
 
-// divide 两数相除,  TODO: 先抄一遍.快速乘的地方没看懂
+// divide 两数相除,官方题解  TODO: 先抄一遍.快速乘的地方没看懂
 func divide(dividend int, divisor int) int {
 	// 被除数为最小值的情况
 	if dividend == math.MinInt32 {
@@ -87,6 +87,53 @@ func quickMult(x, y int) int {
 		}
 		x = x + x
 		y >>= 1
+	}
+	return ans
+}
+
+// divide1 Nick Hot题目 容易理解的二分快速乘法  ,宫水三页  ，简单易于理解，但是里边用到了 int64  (long)
+func divide1(dividend, divisor int) int {
+	x, y, ans := int64(dividend), int64(divisor), int64(0)
+	// isNeg是否为负数
+	isNeg := false
+	if (x < 0 && y > 0) || (x > 0 && y < 0) {
+		isNeg = true
+	}
+	if x < 0 {
+		x = -x
+	}
+	if y < 0 {
+		y = -y
+	}
+	var left, right int64 = 0, x
+	for left < right {
+		mid := (left + right + 1) >> 1
+		if quickMul(mid, y) <= x {
+			left = mid
+		} else {
+			right = mid - 1
+		}
+	}
+	if isNeg {
+		ans = -left
+	} else {
+		ans = left
+	}
+	if ans > math.MaxInt32 || ans < math.MinInt32 {
+		return math.MaxInt32
+	}
+	return int(ans)
+}
+
+// quickMul 快速乘法
+func quickMul(a, b int64) int64 {
+	var ans int64
+	for b > 0 {
+		if b&1 == 1 {
+			ans += a
+		}
+		b >>= 1
+		a += a
 	}
 	return ans
 }
