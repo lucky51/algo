@@ -30,7 +30,7 @@ func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
 	}
 }
 
-// mergeKLists 合并K个升序链表 ，循环用最简单的求解方法，TODO:leetcode上有分治思想求解，先刷题，以后在看
+// mergeKLists 合并K个升序链表 ，循环用最简单的求解方法，TODO:leetcode上有分治思想求解，先刷题，以后在看 ,这道题是lc中等难度的题目
 func mergeKLists(lists []*ListNode) *ListNode {
 	if len(lists) == 0 {
 		return nil
