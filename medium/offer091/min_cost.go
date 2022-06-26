@@ -11,7 +11,6 @@ func minCost(costs [][]int) int {
 	return min(min(a, b), c)
 
 }
-
 func min(a, b int) int {
 	if a < b {
 		return a
