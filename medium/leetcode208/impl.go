@@ -1,28 +1,49 @@
 package leetcode208
 
-// 实现 Trie （前缀树)  TODO:未实现
+// 实现 Trie （前缀树)
 type Trie struct {
-	prefixMap map[string]bool
+	children [26]*Trie
+	isEnd    bool
 }
 
 func Constructor() Trie {
-	return Trie{
-		prefixMap: map[string]bool{},
-	}
+	return Trie{}
 }
 
 func (this *Trie) Insert(word string) {
-	for i := len(word); i > 0; i-- {
-		this.prefixMap[word[:i]] = i == len(word)
+	node := this
+	for _, ch := range word {
+		ch -= 'a'
+		if node.children[ch] == nil {
+			node.children[ch] = &Trie{}
+		}
+		node = node.children[ch]
 	}
+	node.isEnd = true
+}
+
+func (this *Trie) SearchPrefix(prefix string) *Trie {
+	node := this
+	for _, ch := range prefix {
+		ch -= 'a'
+		if node.children[ch] == nil {
+			return nil
+		}
+		node = node.children[ch]
+	}
+	return node
 }
 
 func (this *Trie) Search(word string) bool {
-	full, ok := this.prefixMap[word]
-	return ok && full
+	if t := this.SearchPrefix(word); t != nil && t.isEnd {
+		return true
+	}
+	return false
 }
 
 func (this *Trie) StartsWith(prefix string) bool {
-	_, ok := this.prefixMap[prefix]
-	return ok
+	if t := this.SearchPrefix(prefix); t != nil {
+		return true
+	}
+	return false
 }
