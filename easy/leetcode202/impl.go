@@ -1,12 +1,12 @@
 package leetcode202
 
 // isHappy 快乐数
+// 计算快乐数可能会遇到的三种情况
+// 1. 最终结果变为 1
+// 2. 进入死循环
+// 3. 计算的结果无限大
+// 根据 leecode官方题解，第三种情况是无法达到的
 func isHappy(n int) bool {
-	// 计算快乐数可能会遇到的三种情况
-	// 1. 最终结果变为 1
-	// 2. 进入死循环
-	// 3. 计算的结果无限大
-	// 根据 leecode官方题解，第三种情况是无法达到的
 	memo := map[int]struct{}{}
 	// 拆分数字 然后计算
 	var next = func(num int) (ans int) {
