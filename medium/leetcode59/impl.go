@@ -24,8 +24,9 @@ func generateMatrix(n int) [][]int {
 	return matrix
 }
 
-func generateMatrix1(n int) [][]int {
-	total := n * n
-	directionIndex := 0
-	directions := [][]int{{0, 1}, {1, 0}, {0, -1}, {-1, 0}}
-}
+// func generateMatrix1(n int) [][]int {
+// 	total := n * n
+// 	directionIndex := 0
+// 	directions := [][]int{{0, 1}, {1, 0}, {0, -1}, {-1, 0}}
+
+// }
