@@ -29,6 +29,7 @@ func (this *MyLinkedList) Print() {
 	fmt.Printf("\n")
 }
 
+// Get 根据索引获取值
 func (this *MyLinkedList) Get(index int) int {
 	if index < 0 || index >= this.size {
 		return -1
@@ -39,14 +40,18 @@ func (this *MyLinkedList) Get(index int) int {
 	}
 	return cur.Val
 }
+
+// AddAtHead 在链表头添加元素
 func (this *MyLinkedList) AddAtHead(val int) {
 	this.AddAtIndex(0, val)
 }
 
+// AddAtTail 在链表尾部添加元素
 func (this *MyLinkedList) AddAtTail(val int) {
 	this.AddAtIndex(this.size, val)
 }
 
+// AddAtIndex 在对应索引位置添加元素
 func (this *MyLinkedList) AddAtIndex(index int, val int) {
 	if index > this.size {
 		return
@@ -60,6 +65,8 @@ func (this *MyLinkedList) AddAtIndex(index int, val int) {
 	toAdd := &MyLinkedNode{Val: val, Next: pred.Next}
 	pred.Next = toAdd
 }
+
+// DeleteAtIndex 删除索引位置元素
 func (this *MyLinkedList) DeleteAtIndex(index int) {
 	if index < 0 || index >= this.size {
 		return
