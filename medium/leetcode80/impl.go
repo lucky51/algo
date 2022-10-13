@@ -16,3 +16,20 @@ func removeDuplicates(nums []int) int {
 	}
 	return slow
 }
+
+// removeDuplicates1 复习
+func removeDuplicates1(nums []int) int {
+	n := len(nums)
+	if n < 3 {
+		return n
+	}
+	slow, fast := 2, 2
+	for fast < n {
+		if nums[slow] != nums[fast] {
+			nums[slow] = nums[fast]
+			slow++
+		}
+		fast++
+	}
+	return slow
+}
