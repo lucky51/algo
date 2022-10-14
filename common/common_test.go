@@ -1,6 +1,7 @@
 package common
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -30,4 +31,20 @@ func absoluteRisk(gender, age int) float32 {
 		return -1
 	}
 	return absoluteRiskTable[(age-35)/5][gender]
+}
+
+func TestPrintTree(t *testing.T) {
+	root := &TreeNode{3, &TreeNode{9, &TreeNode{15, nil, nil}, &TreeNode{10, nil, nil}}, &TreeNode{20, nil, &TreeNode{7, &TreeNode{7, nil, nil}, &TreeNode{8, nil, &TreeNode{4, nil, nil}}}}}
+	var printTree func(node *TreeNode)
+	printTree = func(node *TreeNode) {
+		if node == nil {
+			return
+		}
+		//fmt.Printf("%d,", node.Val)
+		printTree(node.Left)
+		fmt.Printf("%d,", node.Val)
+		printTree(node.Right)
+		//fmt.Printf("%d,", node.Val)
+	}
+	printTree(root)
 }
