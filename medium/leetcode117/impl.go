@@ -1,4 +1,4 @@
-package leetcode116
+package leetcode117
 
 type Node struct {
 	Val   int
@@ -7,7 +7,7 @@ type Node struct {
 	Next  *Node
 }
 
-// connect 填充每个节点的下一个右侧节点指针 使用BFS遍历应该不是这道题的解法，题目要求常量级的存储空间，这道题可以优化 TODO
+// connect 填充每个节点的下一个右侧节点指针  这道题和 116可以用相同的解法，但是116应该需要优化
 func connect(root *Node) *Node {
 	if root == nil {
 		return nil
