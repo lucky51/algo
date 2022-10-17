@@ -9,7 +9,7 @@ func searchInsert(nums []int, target int) int {
 	lo, hi := 0, len(nums)-1
 	for lo <= hi {
 		mid := (lo + hi) / 2
-		//比mid大于活等于的第一个下标位置就是结果
+		//比mid大于或等于的第一个下标位置就是结果
 		if nums[mid] >= target {
 			ans = mid
 			hi = mid - 1
