@@ -4,7 +4,7 @@ package leetcode367
 func isPerfectSquare(num int) bool {
 	// 完全平方数即一个数的平方等于这个数
 	lo, hi := 0, num
-	for lo < hi {
+	for lo <= hi {
 		mid := lo + (hi-lo)/2
 		v := mid * mid
 		if v == num {
