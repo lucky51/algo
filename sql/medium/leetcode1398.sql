@@ -10,6 +10,6 @@ FROM (
     JOIN Customers c on o.customer_id = c.customer_id
 GROUP BY o.customer_id
 having
-    sum(if(o.product_name = 'A', 1, 0)) = 1
-    and sum(if(o.product_name = 'B', 1, 0)) = 1
+    sum(if(o.product_name = 'A', 1, 0)) > 0
+    and sum(if(o.product_name = 'B', 1, 0)) > 0
     and sum(if(o.product_name = 'C', 1, 0)) = 0
