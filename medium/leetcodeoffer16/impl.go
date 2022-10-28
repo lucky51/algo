@@ -13,7 +13,6 @@ func quickMul(x float64, n int) float64 {
 	if n == 0 {
 		return 1
 	}
-
 	y := quickMul(x, n/2)
 	// 如果n能被2整除，那么就等价于 y *y
 	if n%2 == 0 {
