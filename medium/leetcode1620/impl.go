@@ -5,6 +5,7 @@ import "math"
 // bestCoordinate 网络信号最好的坐标
 // 这道题计算范围是所有塔覆盖的所有坐标，而非各塔单个坐标
 func bestCoordinate(towers [][]int, radius int) []int {
+	// x,y的取值范围最大值为50，求得x,y各自最大的值，优化搜索范围
 	maxX, maxY := 0, 0
 	var cx, cy, maxQuality int
 	for _, t := range towers {
