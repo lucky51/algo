@@ -6,12 +6,9 @@
     select Users.name as results
     FROM MovieRating
         JOIN Users ON MovieRating.user_id = Users.user_id
-    WHERE
-        MovieRating.created_at >= '2020-02-01'
-        AND MovieRating.created_at < '2020-03-01'
     GROUP BY MovieRating.user_id
     ORDER BY
-        count(MovieRating.movie_id) desc,
+        count(MovieRating.user_id) desc,
         Users.name
     LIMIT 1
 )
