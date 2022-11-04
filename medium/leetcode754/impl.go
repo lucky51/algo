@@ -9,6 +9,7 @@ package leetcode754
 	如果s和target相差为奇数，继续多走一步，变为偶数，则可以转换成上述偶数的情况。
 	如果s和target相差为奇数，继续走两步才变为偶数，则也可以转换成上述偶数的情况。
 	这道题按照结论看代码容易理解，但是推到的过程对于我来说不易理解，也就是容易忘。
+	https://leetcode.cn/problems/reach-a-number/solutions/1947254/fen-lei-tao-lun-xiang-xi-zheng-ming-jian-sqj2/
 */
 
 // reachNumber 到达终点的数字
