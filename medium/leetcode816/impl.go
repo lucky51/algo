@@ -3,6 +3,7 @@ package leetcode816
 import "fmt"
 
 // ambiguousCoordinates 模糊坐标
+// 看完题解还不是清晰透彻的题，后边在看看
 func ambiguousCoordinates(s string) []string {
 	f := func(i, j int) []string {
 		res := []string{}
