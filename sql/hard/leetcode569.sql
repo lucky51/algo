@@ -11,6 +11,8 @@
 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 */
 
+/* 
+官方题解不通过
 SELECT
     Employee.Id, Employee.Company, Employee.Salary
 FROM
@@ -24,9 +26,27 @@ HAVING SUM(CASE
     ELSE 0
 END) >= ABS(SUM(SIGN(Employee.Salary - alias.Salary)))
 ORDER BY Employee.Id
-;
+; */
 
 #作者：力扣 (LeetCode)
 #链接：https://leetcode.cn/problems/median-employee-salary/solutions/143337/yuan-gong-xin-shui-zhong-wei-shu-by-leetcode/
 #来源：力扣（LeetCode）
 #著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+select
+    id,company,salary
+from
+(select
+    a.*,
+    row_number() over(partition by company order by salary, id) as rnk1,
+    row_number() over(partition by company order by salary desc, id desc) as rnk2,
+    count(id) over(partition by company) as cnt
+from Employee a) tmp
+where rnk1 >= cnt/2 
+and rnk2 >= cnt/2
+
+/* 作者：鲸鲸说数据🐋
+链接：https://leetcode.cn/problems/median-employee-salary/solutions/1471242/by-zg104-7x8t/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。 */
