@@ -22,6 +22,8 @@ func splitArraySameAverage(nums []int) bool {
 
     m := n / 2
     left := map[int]bool{}
+	// 这里使用二进制表示各个位置的数字是否选取，1~ 2的m次方-1个数字可以代表所有前m个数字状态，遍历每一个状态组合，求的所有和，
+	// 如果存在和为0的子集，那么就满足推到中的条件，即返回true，反之我们要继续遍历右侧找到左侧是否有与其对应的相反数，如果有左右相加可得0，依然满足推到
     for i := 1; i < 1<<m; i++ {
         tot := 0
         for j, x := range nums[:m] {
