@@ -10,7 +10,6 @@ func splitArraySameAverage(nums []int) bool {
 	if n == 1 {
 		return false
 	}
-
 	sum := 0
 	for _, x := range nums {
 		sum += x
@@ -35,7 +34,6 @@ func splitArraySameAverage(nums []int) bool {
 		}
 		left[tot] = true
 	}
-
 	rsum := 0
 	for _, x := range nums[m:] {
 		rsum += x
@@ -47,6 +45,8 @@ func splitArraySameAverage(nums []int) bool {
 				tot += x
 			}
 		}
+		// 这里左右是相等数量的，那么右侧如果全选了，那么左侧也是一定全选了，则不符合题意
+		// 试想一下，如果右侧全选了，那么左侧一定全选，左侧全选且等于0的情况下，在上一步就已经返回了，根本走不到这里。
 		if tot == 0 || rsum != tot && left[-tot] {
 			return true
 		}
