@@ -13,3 +13,14 @@ FROM
         GROUP BY  e1.salary
         ORDER BY  e1.salary desc) AS e ) AS e3
         ON tb1.n =e3.rn
+
+
+        ----------
+
+  # Write your MySQL query statement below
+
+ select (   select  distinct tb.salary   from (
+            select e.salary, dense_rank() over(order by e.salary desc) rn from Employee  e
+
+    )
+     tb where tb.rn =2 ) as SecondHighestSalary
